@@ -1,0 +1,18 @@
+
+
+-- Read FASTA file using BioPython  (Jared)
+
+-- Define translation dictionary (Victoria & Nico)
+
+-- Apply translation (Spencer)
+
+-- Encode sheet music to SMF (and define SMF) (Nico)
+
+-- Translate SMF to sequence (Marjan)
+
+-- Integration (Abhinav & Brett)
+
+-- Testing (Megan)
+
+-- Translate SMF to LilyPond format (Brett)
+
