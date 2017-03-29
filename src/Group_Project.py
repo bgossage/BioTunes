@@ -6,16 +6,21 @@ Created on Mon Mar 27 20:21:44 2017
 @authors: BYS602 Spring 2017ll
 """
 
-import numpy as np
-import scipy as sp
+import sys
+
 from Bio import SeqIO
+
+input_filename = "../data/human_ins.fasta"
+
+# If provided, use the filename from the command line arg...
+if( len(sys.argv) > 1 ):
+   input_filename = sys.argv[1] 
+
 
 ###############################################################################
 
-InFile = "sequence.fasta"
-#Deactivate the above line and activate the below line if you wish to input the path of the fasta file in the terminal
-#InFile = input(">")
-infile = SeqIO.read(InFile, "fasta")
+
+infile = SeqIO.read( input_filename, "fasta" )
 OutFile = "outfile.txt"
 #Deactivate the above line and activate the below line if you wish to output the path of the fasta file in the terminal
 #OutFile = input(">")
