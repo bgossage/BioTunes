@@ -12,7 +12,7 @@ from Bio import SeqIO
 
 ###############################################################################
 
-InFile = "../data/human_ins.fasta"
+InFile = "sequence.fasta"
 #Deactivate the above line and activate the below line if you wish to input the path of the fasta file in the terminal
 #InFile = input(">")
 infile = SeqIO.read(InFile, "fasta")
@@ -45,27 +45,27 @@ outfile.write("\n\n***********************************************************\n
 
 NoteDictionary = {"UUU":"C0e", "UUC":"C0q", "UUA":"G0e", 
                   "UUG":"G0q", "CUU":"C1e", "CUC":"C1q", 
-                  "CUA":"C1e", "CUG":"C1q", "AUU":"A1e", 
+                  "CUA":"C2e", "CUG":"C2q", "AUU":"A1e", 
                   "AUC":"A1q", "AUA":"B0e", "AUG":"B0q",
                   "GUU":"A2e", "GUC":"A2q", "GUA":"B2e", 
                   "GUG":"B2q", "UCU":"D0e", "UCC":"D0q", 
                   "UCA":"A0e", "UCG":"A0q", "CCU":"D1e", 
-                  "CCC":"D1q", "CCA":"D1e", "CCG":"D1q", 
-                  "ACU":"C2e", "ACC":"C2q", "ACA":"C2e",
-                  "ACG":"C2q", "GCU":"B1e", "GCC":"B1q", 
+                  "CCC":"D1q", "CCA":"D2e", "CCG":"D2q", 
+                  "ACU":"G3e", "ACC":"G3q", "ACA":"A3e",
+                  "ACG":"A3q", "GCU":"B1e", "GCC":"B1q", 
                   "GCA":"F3e", "GCG":"F3q", "UAU":"E0e", 
                   "UAC":"E0q", "UAA":"stop", "UAG":"stop", 
-                  "CAU":"E1e", "CAC":"E1q", "CAA":"E1e", 
-                  "CAG":"E1q", "AAU":"D2e", "AAC":"D2q", 
-                  "AAA":"E2e", "AAG":"E2q", "GAU":"D3e", 
+                  "CAU":"E1e", "CAC":"E1q", "CAA":"E2e", 
+                  "CAG":"E2q", "AAU":"B3e", "AAC":"B3q", 
+                  "AAA":"C4e", "AAG":"C4q", "GAU":"D3e", 
                   "GAC":"D3q", "GAA":"E3e", "GAG":"E3q", 
                   "UGU":"F0e", "UGC":"F0q", "UGA":"stop", 
-                  "UGG":"C1q", "CGU":"F1e", "CGC":"F1q", 
+                  "UGG":"C1h", "CGU":"F1e", "CGC":"F1q", 
                   "CGA":"G1e", "CGG":"G1q", "AGU":"F2e",
                   "AGC":"F2q", "AGA":"G2e", "AGG":"G2q", 
-                  "GGU":"C3e", "GGC":"C3q", "GGA":"C3e", 
-                  "GGG":"C3q"}
-
+                  "GGU":"C3e", "GGC":"C3q", "GGA":"C0h", 
+                  "GGG":"C2h"
+                 }
 ###############################################################################
 
 outfile.write("\nThe NoteDictionary used is \n\n")
@@ -76,7 +76,7 @@ outfile.write(str(ndl))
 outfile.write("\n\n***********************************************************\n")
 
 n = 3
-m = [infile.seq[i:i+n] for i in range(0, len(infile.seq), n)] #Splits into codons.
+m = [str(infile.seq[i:i+n]) for i in range(0, len(infile.seq), n)] #Splits into codons.
 outfile.write("\nThe codons are \n\n")
 outfile.write(str(m))
 outfile.write("\n\nThe number of codons available in the input sequence is ")
@@ -87,12 +87,11 @@ outfile.write("\n\n***********************************************************\n
 
 #Conversion of Codons to Notes
 outfile.write("The codons converted to musical notes are as follows: \n\n")
-for y in NoteDictionary:
-    for x in m:
-        if x == y:
-            for t in NoteDictionary[y]:
-                outfile.write(' '.join(str(s) for s in t) + ' ')
-            outfile.write(str(NoteDictionary[y])) #OutFile is whatever you want the output file name to be. Change as you see fit.
+for codon in m:
+    codon = codon.replace('T', 'U')
+    outfile.write(NoteDictionary[codon] + ' ')
+    
+
 outfile.write("\n\n***********************************************************\n")
 
 ###############################################################################            
@@ -102,30 +101,29 @@ outfile.write("PART II: \n")
 outfile.write("***********************************************************\n\n")
 
 #Back coding Dictionary - from notes to DNA
-CodonDictionary = {"C4e":"UUU", "C4q":"UUC", "D2h":"UUA",
-                   "D2w":"UUG", "D2e":"CUU", "D2q":"CUC",
-                   "D2h":"CUA", "D2w":"CUG", "C2e":"AUU",
-                   "C2q":"AUC", "C2h":"AUA", "A0w":"AUG",
-                   "B2e":"GUU", "B2q":"GUC", "B2h":"GUA",
-                   "B2w":"GUG", "E3e":"UCU", "E3q":"UCC",
-                   "E3h":"UCA", "E3w":"UCG", "D1e":"CCU",
-                   "D1q":"CCC", "D1h":"CCA", "D1w":"CCG",
-                   "A2e":"ACU", "A2q":"ACC", "A2h":"ACA",
-                   "A2w":"ACG", "A1e":"GCU", "A1q":"GCC",
-                   "A1h":"GCA", "A1w":"GCG", "B0e":"UAU",
-                   "B0q":"UAC", "stop":"UAA", "stop":"UAG",
-                   "B2e":"CAU", "B2q":"CAC", "G1h":"CAA", 
-                   "G1w":"CAG", "E1e":"AAU", "E1q":"AAC",
-                   "G2h":"AAA", "G2w":"AAG", "F2e":"GAU",
-                   "F2q":"GAC", "C2h":"GAA", "C2w":"GAG",
-                   "G0e":"UGU", "G0q":"UGC", "stop":"UGA",
-                   "C0w":"UGG", "F1e":"CGU", "F1q":"CGC",
-                   "F1h":"CGA", "F1w":"CGG", "E2e":"AGU",
-                   "E2q":"AGC", "F1h":"AGA", "F1w":"AGG",
-                   "B1e":"GGU", "B1q":"GGC", "B1h":"GGA",
-                   "B1h":"GGG"}
+CodonDictionary = {'G3q': 'ACC', 'C0h': 'GGA', 'C2q': 'CUG',
+                   'B0e': 'AUA', 'E2q': 'CAG', 'D0q': 'UCC',
+                   'D2q': 'CCG', 'G1e': 'CGA', 'E2e': 'CAA',
+                   'C0e': 'UUU', 'E0q': 'UAC', 'B0q': 'AUG',
+                   'F3q': 'GCG', 'D0e': 'UCU', 'B1e': 'GCU',
+                   'G3e': 'ACU', 'C2e': 'CUA', 'C0q': 'UUC',
+                   'C2h': 'GGG', 'E0e': 'UAU', 'D2e': 'CCA',
+                   'G1q': 'CGG', 'F3e': 'GCA', 'A2q': 'GUC',
+                   'F1q': 'CGC', 'E3q': 'GAG', 'F1e': 'CGU',
+                   'C3q': 'GGC', 'A0q': 'UCG', 'B2q': 'GUG',
+                   'C3e': 'GGU', 'E3e': 'GAA', 'A2e': 'GUU',
+                   'B2e': 'GUA', 'A0e': 'UCA', 'F0e': 'UGU',
+                   'C1h': 'UGG', 'D1q': 'CCC', 'F2e': 'AGU',
+                   'G2q': 'AGG', 'E1q': 'CAC', 'G0e': 'UUA',
+                   'stop': 'UGA', 'C1e': 'CUU', 'D3q': 'GAC',
+                   'D1e': 'CCU', 'F2q': 'AGC', 'G2e': 'AGA',
+                   'F0q': 'UGC', 'B1q': 'GCC', 'C1q': 'CUC',
+                   'D3e': 'GAU', 'E1e': 'CAU', 'G0q': 'UUG',
+                   'C4q': 'AAG', 'A3q': 'ACG', 'A1q': 'AUC',
+                   'C4e': 'AAA', 'B3q': 'AAC', 'A1e': 'AUU',
+                   'A3e': 'ACA', 'B3e': 'AAU'}
 
-MusicalNote = "A0w A1e A1h A1q A1w A2e A2h A2q A2w B0e B0q B1e B1h B1h B1q B2e B2e B2h B2q B2q B2w C0w C2e C2h C2h C2q C2w C4e C4q D1e D1h D1q D1w D2e D2h D2h D2q D2w D2w E1e E1q E2e E2q E3e E3h E3q E3w F1e F1h F1h F1q F1w F1w F2e F2q G0e G0q G1h G1w G2h G2w stop stop stop"
+MusicalNote = 'C1h G0q E1q D1q A0q F1q B0q D1q F1q A1q G1e G1q F1e E1e C2h G1q E1q D1e F1e A1e D2e F2q G2e A2e G0e E1e G1e C2e B1e D2e F2e B1e B1q C2e D2e C2q'
 outfile.write("The Musical Note given for part 2 of the project is \n\n")
 outfile.write(MusicalNote)
 outfile.write("\n\n")
@@ -148,7 +146,7 @@ def translate(MusicalNote):
     return RNA
 
 RNA = translate(MusicalNote)
-DNA = RNA.replace("U","T")
+DNA = RNA.replace("U","T").replace(' ','')
 outfile.write("The DNA sequence encoded by the musical note is \n\n")
 outfile.write(DNA)
 outfile.write("\n\n***********************************************************\n")
