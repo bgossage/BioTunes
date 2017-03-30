@@ -40,6 +40,7 @@ def transform_to_lilypond( smf_string, filename="sheet_music.ly" ):
            
            if note[2] == "e": lp_note += "8"
            if note[2] == "q": lp_note += "4"
+           if note[2] == "h": lp_note += "2"
            
            output.write( "{:s} ".format( lp_note ) )
            
