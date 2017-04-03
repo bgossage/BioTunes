@@ -10,6 +10,8 @@ import sys
 
 from Bio import SeqIO
 
+import lilypond
+
 input_filename = "../data/human_ins.fasta"
 
 # If provided, use the filename from the command line arg...
@@ -159,3 +161,7 @@ outfile.write("\n\n***********************************************************\n
 ###############################################################################
 
 outfile.close()
+
+lilypond.transform_to_lilypond( MusicalNote )
+
+
