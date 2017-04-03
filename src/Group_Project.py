@@ -81,7 +81,7 @@ outfile.write(str(ndl))
 outfile.write("\n\n***********************************************************\n")
 
 n = 3
-m = [str(infile.seq[i:i+n]) for i in range(0, len(infile.seq), n)] #Splits into codons.
+m = [str(infile.seq[i:i+n]) for i in range(0, len(infile.seq)- (len(infile.seq)%3), n)] #Splits into codons.
 outfile.write("\nThe codons are \n\n")
 outfile.write(str(m))
 outfile.write("\n\nThe number of codons available in the input sequence is ")
