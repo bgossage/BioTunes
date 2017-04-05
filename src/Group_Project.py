@@ -70,8 +70,8 @@ NoteDictionary = {"UUU":"C0e", "UUC":"C0q", "UUA":"G0e",
                   "UGG":"C1h", "CGU":"F1e", "CGC":"F1q", 
                   "CGA":"G1e", "CGG":"G1q", "AGU":"F2e",
                   "AGC":"F2q", "AGA":"G2e", "AGG":"G2q", 
-                  "GGU":"C3e", "GGC":"C3q", "GGA":"C0h", 
-                  "GGG":"C2h"
+                  "GGU":"C3e", "GGC":"C3q", "GGA":"A4q", 
+                  "GGG":"B4q"
                  }
 ###############################################################################
 
@@ -108,13 +108,13 @@ outfile.write("PART II: \n")
 outfile.write("***********************************************************\n\n")
 
 #Back coding Dictionary - from notes to DNA
-CodonDictionary = {'G3q': 'ACC', 'C0h': 'GGA', 'C2q': 'CUG',
+CodonDictionary = {'G3q': 'ACC', 'A4q': 'GGA', 'C2q': 'CUG',
                    'B0e': 'AUA', 'E2q': 'CAG', 'D0q': 'UCC',
                    'D2q': 'CCG', 'G1e': 'CGA', 'E2e': 'CAA',
                    'C0e': 'UUU', 'E0q': 'UAC', 'B0q': 'AUG',
                    'F3q': 'GCG', 'D0e': 'UCU', 'B1e': 'GCU',
                    'G3e': 'ACU', 'C2e': 'CUA', 'C0q': 'UUC',
-                   'C2h': 'GGG', 'E0e': 'UAU', 'D2e': 'CCA',
+                   'B4q': 'GGG', 'E0e': 'UAU', 'D2e': 'CCA',
                    'G1q': 'CGG', 'F3e': 'GCA', 'A2q': 'GUC',
                    'F1q': 'CGC', 'E3q': 'GAG', 'F1e': 'CGU',
                    'C3q': 'GGC', 'A0q': 'UCG', 'B2q': 'GUG',
@@ -122,7 +122,7 @@ CodonDictionary = {'G3q': 'ACC', 'C0h': 'GGA', 'C2q': 'CUG',
                    'B2e': 'GUA', 'A0e': 'UCA', 'F0e': 'UGU',
                    'C1h': 'UGG', 'D1q': 'CCC', 'F2e': 'AGU',
                    'G2q': 'AGG', 'E1q': 'CAC', 'G0e': 'UUA',
-                   'stop': 'UGA', 'C1e': 'CUU', 'D3q': 'GAC',
+                   'stop': 'UGA','C1e': 'CUU', 'D3q': 'GAC',
                    'D1e': 'CCU', 'F2q': 'AGC', 'G2e': 'AGA',
                    'F0q': 'UGC', 'B1q': 'GCC', 'C1q': 'CUC',
                    'D3e': 'GAU', 'E1e': 'CAU', 'G0q': 'UUG',
@@ -130,7 +130,7 @@ CodonDictionary = {'G3q': 'ACC', 'C0h': 'GGA', 'C2q': 'CUG',
                    'C4e': 'AAA', 'B3q': 'AAC', 'A1e': 'AUU',
                    'A3e': 'ACA', 'B3e': 'AAU'}
 
-MusicalNote = 'C1h G0q E1q D1q A0q F1q B0q D1q F1q A1q G1e G1q F1e E1e C2h G1q E1q D1e F1e A1e D2e F2q G2e A2e G0e E1e G1e C2e B1e D2e F2e B1e B1q C2e D2e C2q'
+MusicalNote = 'C1q G0q E1q D1q A0q F1q B0q D1q F1q A1q G1e G1q F1e E1e C2q G1q E1q D1e F1e A1e D2e F2q G2e A2e G0e E1e G1e C2e B1e D2e F2e B1e B1q C2e D2e C2q'
 outfile.write("The Musical Note given for part 2 of the project is \n\n")
 outfile.write(MusicalNote)
 outfile.write("\n\n")
