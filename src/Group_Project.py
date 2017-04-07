@@ -282,7 +282,7 @@ if valid_input:
       > lame (linux package for mp3 generation) 
     """
 
-    generate_music = True
+    generate_music = False
     if generate_music:
         midi_filename = basename + ".midi"
         mp3_filename = basename + ".mp3"
