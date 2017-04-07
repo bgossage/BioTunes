@@ -1,10 +1,55 @@
-#!/usr/bin/env python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-Created on Mon Mar 27 20:21:44 2017
 
-@authors: BYS602 Spring 2017ll
+Project 2, Bioinformatics II (BYS602) Spring 2017
+
+This project is the result of a collborative effort divided into separate tasks.
+Each task assigned by way of mutual agreement among the team members as follows.
+
+    -- Read FASTA file using BioPython  (Jared)
+
+    -- Define translation dictionary (Victoria & Nico)
+
+    -- Apply translation (Spencer)
+
+    -- Encode sheet music to SMF (and define SMF) (Nico)
+
+    -- Translate SMF to sequence (Marjan)
+
+    -- Integration (Abhinav & Brett)
+
+    -- Testing (Megan)
+
+    -- Translate SMF to LilyPond format (Brett)
+
+The project is kept under configuration management using git (https://git-scm.com) and
+maintained through the github platform at: https://github.com/bgossage/BioTunes
+To get the latest files from github, go to the project page and select the
+"Clone or download" button, then "Download ZIP"
+
+All of the required code for both Part I and Part II of the assigment are provided in this
+script.
+
+To run the script enter:
+
+                  python Group_Project.py [filename.fasta OR filename.smf]
+
+If file provided on the command line is a FASTA file, Part I is executed and the sequence
+is translated to notes and written out in our project-specific "Simple Music Format" (smf).
+
+If file provided on the command line is an SMF file, Part II is executed and the music
+is translated to a DNA sequence and written out in FASTA format.
+
+In either case, a lilypond-formatted file is also written for generating sheet music
+ and audio files.
+
+
+
+
 """
+
+
 
 # Python library imports.
 import sys
@@ -20,10 +65,11 @@ from Bio.SeqRecord import SeqRecord
 
 #***********************************************************
 #This project contains 2 parts.
-#Part I is to convert a DNA sequence into a musical note and play it.\n")
-#Part II is to convert a new musical note into DNA and do a sequence alignment in BLAST/NCBI.\n\n")
-#***********************************************************\n")
-#PART 1 of project follows
+#Part I is to convert a DNA sequence into a musical notes and play it.
+#Part II is to convert a new musical note into DNA and do a sequence alignment in BLAST/NCBI.
+#***********************************************************
+
+# PART 1 of project follows
 
 
 ###############################################################################
@@ -279,7 +325,7 @@ if valid_input:
     Set generate_music = True if you have installed the required music generation tools:
       > lilypond (www.lilypond.org) NOTE: configure the path to lilypond accordinly
       > timidity (linux package for .wav sound file from midi file)
-      > lame (linux package for mp3 generation) 
+      > lame (linux package for mp3 generation)
     """
 
     generate_music = False
